@@ -1,0 +1,12 @@
+
+*.jpg
+traningData.yml
+*.txt
+haarcascade_frontalface_default.xml
+Face recognition GUI.iml
+.idea/vcs.xml
+.idea/runConfigurations.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/LBPH-Face-Recognition-GUI.iml
+.idea/workspace.xml
