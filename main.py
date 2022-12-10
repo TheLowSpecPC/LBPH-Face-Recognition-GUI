@@ -1,6 +1,5 @@
 from tkinter import *
-import traning
-import load_model_video
+from subprocess import call
 import sys
 import os
 import cv2
@@ -51,10 +50,11 @@ def delete():
         shutil.rmtree(cwd+"/images/"+l1.get())
 
 def train():
-    print(traning.tran())
+    call(["python", "traning.py"])
+    cmd.insert(END, "Training Upload Finished")
 
 def start():
-    print(load_model_video.str())
+    call(["python", "load_model_video.py"])
 
 def exit():
     sys.exit(1)
