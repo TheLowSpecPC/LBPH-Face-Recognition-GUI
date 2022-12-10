@@ -51,4 +51,4 @@ def draw_rect(test_img, face):
 
 
 def put_text(test_img, label_name, x, y):
-    cv2.putText(test_img, label_name, (x, y), cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 3)
+    cv2.putText(test_img, label_name, (x, y), cv2.FONT_HERSHEY_COMPLEX_SMALL, 2, (0, 255, 0), 3)

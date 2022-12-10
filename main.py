@@ -59,19 +59,38 @@ def start():
 def exit():
     sys.exit(1)
 
+def temp_text1(e):
+    l.delete(0,"end")
+def temp_text2(e):
+    l1.delete(0,"end")
+def temp_text3(e):
+    n.delete(0,"end")
+def temp_text4(e):
+    n1.delete(0,"end")
+
 Label(root, text="Image Upload", font=("Raleway", 20), bg="black", fg="white", height="1").place(x=150, y=1)
 
 Label(root, text="Lable", font=("Raleway", 20), bg="black", fg="white", height="1").place(x=150, y=70)
 l = Entry(root, width="10")
+l.insert(0, "Only No:")
 l.place(x=155, y=120)
+l.bind("<FocusIn>", temp_text1)
+
 l1 = Entry(root, width="10")
+l1.insert(0, "Only No:")
 l1.place(x=155, y=150)
+l1.bind("<FocusIn>", temp_text2)
 
 Label(root, text="Name", font=("Raleway", 20), bg="black", fg="white", height="1").place(x=250, y=70)
 n = Entry(root, width="20")
+n.insert(0, "Name")
 n.place(x=225, y=120)
+n.bind("<FocusIn>", temp_text3)
+
 n1 = Entry(root, width="20")
+n1.insert(0, "Name")
 n1.place(x=225, y=150)
+n1.bind("<FocusIn>", temp_text4)
 
 Button(root,text="Save", command=threading.Thread(target=save).start, width="10", height="1").place(x=375, y=120)
 Button(root,text="Delete", command=delete, width="10", height="1").place(x=375, y=150)
