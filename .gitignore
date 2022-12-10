@@ -10,3 +10,6 @@ Face recognition GUI.iml
 .idea/misc.xml
 .idea/LBPH-Face-Recognition-GUI.iml
 .idea/workspace.xml
+__pycache__/traning.cpython-310.pyc
+__pycache__/load_model_video.cpython-310.pyc
+__pycache__/face_recognition.cpython-310.pyc

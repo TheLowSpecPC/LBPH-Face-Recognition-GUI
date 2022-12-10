@@ -6,7 +6,7 @@ def str():
     cwd = os.getcwd()
 
     face_recognizer = cv2.face.LBPHFaceRecognizer_create()
-    face_recognizer.read(r'C:\Users\Moiz\IdeaProjects\Face recognition GUI\traningData.yml')
+    face_recognizer.read(cwd+"/traningData.yml")
 
     cap=cv2.VideoCapture(0)
     size=(int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
@@ -39,7 +39,7 @@ def str():
             print("Lable: ",lable)
             fr.draw_rect(test_img,face)
             predicted_name=name[lable]
-            if(confidence>=40):
+            if(confidence>=50):
                 fr.put_text(test_img,'Unknown',x,y)
                 continue
             fr.put_text(test_img,predicted_name,x,y)

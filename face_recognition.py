@@ -2,9 +2,10 @@ import numpy as np
 import cv2
 import os
 
+cwd = os.getcwd()
 def faceDetection(test_img):
     gray_img = cv2.cvtColor(test_img, cv2.COLOR_BGR2GRAY)
-    face_haar = cv2.CascadeClassifier(r'haarcascade_frontalface_default.xml')
+    face_haar = cv2.CascadeClassifier(cwd+"/haarcascade_frontalface_default.xml")
     faces = face_haar.detectMultiScale(gray_img, scaleFactor=1.3, minNeighbors=3)
     return faces, gray_img
 

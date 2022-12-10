@@ -14,7 +14,7 @@ root.config(bg="gray")
 cwd = os.getcwd()
 
 def save():
-    if l.get()==None or n.get()==None:
+    if l.get()=="" or n.get()=="":
         os._exit(0)
 
     if os.path.exists(cwd + "/Info/"+l.get()+".txt"):
@@ -43,6 +43,8 @@ def save():
             break
 
 def delete():
+    if l.get()=="":
+        os._exit(0)
     if os.path.exists(cwd + "/Info/"+l1.get()+".txt"):
         os.remove(cwd + "/Info/"+l1.get()+".txt")
     if os.path.exists(cwd+"/images/"+l1.get()):
