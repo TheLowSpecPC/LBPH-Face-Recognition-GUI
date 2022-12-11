@@ -13,33 +13,31 @@ root.config(bg="gray")
 cwd = os.getcwd()
 
 def save():
-    if l.get()=="" or n.get()=="":
-        os._exit(0)
+    if l.get()!="" and n.get()!="":
+        if os.path.exists(cwd + "/Info/"+l.get()+".txt"):
+            os.remove(cwd + "/Info/"+l.get()+".txt")
 
-    if os.path.exists(cwd + "/Info/"+l.get()+".txt"):
-        os.remove(cwd + "/Info/"+l.get()+".txt")
+        with open(cwd + "/Info/"+l.get()+".txt", "w") as a:
+            a.write(n.get())
+            a.close()
 
-    with open(cwd + "/Info/"+l.get()+".txt", "w") as a:
-        a.write(n.get())
-        a.close()
+        cpt = 0
 
-    cpt = 0
+        directory = l.get()
+        parent_dir = cwd+"/images"
+        path = os.path.join(parent_dir, directory)
+        if os.path.exists(path):
+            shutil.rmtree(path)
+        os.mkdir(path)
 
-    directory = l.get()
-    parent_dir = cwd+"/images"
-    path = os.path.join(parent_dir, directory)
-    if os.path.exists(path):
-        shutil.rmtree(path)
-    os.mkdir(path)
-
-    vidStream=cv2.VideoCapture(0)
-    while cpt<=1000:
-        ret, frame=vidStream.read()
-        cv2.imshow("test window", frame)
-        cv2.imwrite(cwd+"/images/"+directory+"/image%04i.jpg" %cpt,frame)
-        cpt +=1
-        if cv2.waitKey(10)==ord('q'):
-            break
+        vidStream=cv2.VideoCapture(0)
+        while cpt<=1000:
+            ret, frame=vidStream.read()
+            cv2.imshow("test window", frame)
+            cv2.imwrite(cwd+"/images/"+directory+"/image%04i.jpg" %cpt,frame)
+            cpt +=1
+            if cv2.waitKey(10)==ord('q'):
+                break
 
 def delete():
     if l.get()=="":
