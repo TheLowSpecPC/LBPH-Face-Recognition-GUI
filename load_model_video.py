@@ -44,13 +44,12 @@ while cv2.waitKey(1)<0 :
             continue
         fr.put_text(test_img,predicted_name,x,y)
 
-    #resized_img=cv2.resize(test_img,(1000,700))
-
     if cv2.waitKey(10)==ord('q'):
         break
 
     #genter and age
 
+    resized_img1=cv2.resize(test_img,(1000,700))
     hasFrame,frame=cap.read()
     if not hasFrame:
         cv2.waitKey()
@@ -59,7 +58,7 @@ while cv2.waitKey(1)<0 :
     resultImg,faceBoxes=fr.highlightFace(fr.faceNet,frame)
     if not faceBoxes:
         print("No face detected")
-        cv2.imshow("Detecting age and gender", resized_img)
+        cv2.imshow("Face Recognition", resized_img1)
 
     for faceBox in faceBoxes:
         try:
@@ -82,4 +81,4 @@ while cv2.waitKey(1)<0 :
 
         cv2.putText(test_img, f'{gender}, {age}', (x+150, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,255), 2, cv2.LINE_AA)
         resized_img=cv2.resize(test_img,(1000,700))
-        cv2.imshow("Detecting age and gender", resized_img)
+        cv2.imshow("Face Recognition", resized_img)

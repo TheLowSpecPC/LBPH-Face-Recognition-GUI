@@ -6,11 +6,13 @@ import cv2
 import shutil
 import threading
 
+cwd = os.getcwd()
+
 root = Tk()
 root.geometry("1000x600")
 root.title("Face Recognition (Made By: The Low Spec PC)")
+root.iconbitmap(cwd+"/icon.ico")
 root.config(bg="gray")
-cwd = os.getcwd()
 
 def save():
     if l.get()!="" and n.get()!="":
