@@ -23,7 +23,8 @@ for j in os.listdir(cwd+"/Info"):
 
 name = dict(zip(key,value))
 
-while True:
+while cv2.waitKey(1)<0 :
+
     ret,test_img=cap.read()
     face_detected,gray_img=fr.faceDetection(test_img)
     print("Face detected: ",face_detected)
@@ -43,9 +44,42 @@ while True:
             continue
         fr.put_text(test_img,predicted_name,x,y)
 
-    resized_img=cv2.resize(test_img,(1000,700))
-
-    cv2.imshow("Face Detection",resized_img)
+    #resized_img=cv2.resize(test_img,(1000,700))
 
     if cv2.waitKey(10)==ord('q'):
         break
+
+    #genter and age
+
+    hasFrame,frame=cap.read()
+    if not hasFrame:
+        cv2.waitKey()
+        break
+
+    resultImg,faceBoxes=fr.highlightFace(fr.faceNet,frame)
+    if not faceBoxes:
+        print("No face detected")
+        cv2.imshow("Detecting age and gender", resized_img)
+
+    for faceBox in faceBoxes:
+        try:
+            face=frame[max(0,faceBox[1]-fr.padding):
+                       min(faceBox[3]+fr.padding,frame.shape[0]-1),max(0,faceBox[0]-fr.padding)
+                                                                :min(faceBox[2]+fr.padding, frame.shape[1]-1)]
+
+            blob=cv2.dnn.blobFromImage(face, 1.0, (227,227), fr.MODEL_MEAN_VALUES, swapRB=False)
+            fr.genderNet.setInput(blob)
+            genderPreds=fr.genderNet.forward()
+            gender=fr.genderList[genderPreds[0].argmax()]
+            print(f'Gender: {gender}')
+
+            fr.ageNet.setInput(blob)
+            agePreds=fr.ageNet.forward()
+            age=fr.ageList[agePreds[0].argmax()]
+            print(f'Age: {age[1:-1]} years')
+        except:
+            continue
+
+        cv2.putText(test_img, f'{gender}, {age}', (x+150, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,255), 2, cv2.LINE_AA)
+        resized_img=cv2.resize(test_img,(1000,700))
+        cv2.imshow("Detecting age and gender", resized_img)
