@@ -40,7 +40,7 @@ while cv2.waitKey(1)<0 :
         fr.draw_rect(test_img,face)
         predicted_name=name[lable]
         if(confidence>=50):
-            fr.put_text(test_img,'Unknown',x,y)
+            fr.put_text(test_img,'Person',x,y)
             continue
         fr.put_text(test_img,predicted_name,x,y)
 
@@ -79,6 +79,6 @@ while cv2.waitKey(1)<0 :
         except:
             continue
 
-        cv2.putText(test_img, f'{gender}, {age}', (x+150, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,255), 2, cv2.LINE_AA)
+#        cv2.putText(test_img, f'{gender}, {age}', (x+150, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,255), 2, cv2.LINE_AA)
         resized_img=cv2.resize(test_img,(1000,700))
         cv2.imshow("Face Recognition", resized_img)

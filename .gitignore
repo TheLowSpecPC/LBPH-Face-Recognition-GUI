@@ -13,3 +13,5 @@ Face recognition GUI.iml
 __pycache__/traning.cpython-310.pyc
 __pycache__/load_model_video.cpython-310.pyc
 __pycache__/face_recognition.cpython-310.pyc
+*.pyc
+*.xml

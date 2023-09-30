@@ -33,7 +33,7 @@ def save():
         os.mkdir(path)
 
         vidStream=cv2.VideoCapture(0)
-        while cpt<=1000:
+        while cpt<=500:
             ret, frame=vidStream.read()
             cv2.imshow("test window", frame)
             cv2.imwrite(cwd+"/images/"+directory+"/image%04i.jpg" %cpt,frame)
